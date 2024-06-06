@@ -1,7 +1,14 @@
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
+import androidx.compose.ui.window.rememberWindowState
 import dev.datlag.kcef.KCEF
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,7 +16,16 @@ import java.io.File
 
 fun main() =
     application {
-        Window(onCloseRequest = ::exitApplication, title = "WebViewDemo") {
+        val state = rememberWindowState(placement = WindowPlacement.Maximized)
+        Window(
+            onCloseRequest = ::exitApplication,
+            title = "WebViewDemo",
+            icon = painterResource("ic_launcher.png"),
+            transparent = true,
+            undecorated = true,
+            alwaysOnTop = true,
+            state = state
+        ) {
             var restartRequired by remember { mutableStateOf(false) }
             var downloading by remember { mutableStateOf(0F) }
             var initialized by remember { mutableStateOf(false) }
@@ -41,7 +57,9 @@ fun main() =
                 Text(text = "Restart required.")
             } else {
                 if (initialized) {
-                    MainWebView()
+                    Box(modifier = Modifier.background(Color.White)) {
+                        MainWebView()
+                    }
                 } else {
                     Text(text = "Downloading $downloading%")
                 }

@@ -3,7 +3,7 @@ import androidx.compose.runtime.Composable
 
 
 @Composable
-fun MainWebView() = WebViewApp()
+fun MainWebView() = WebViewSample()
 
 @Preview
 @Composable

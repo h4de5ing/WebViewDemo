@@ -1,8 +1,8 @@
 package org.example.webview.demo
 
-import WebViewApp
+import WebViewSample
 import androidx.compose.runtime.Composable
 
 
 @Composable
-fun MainWebView() = WebViewApp()
+fun MainWebView() =  WebViewSample()

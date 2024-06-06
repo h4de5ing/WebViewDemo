@@ -2,6 +2,7 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.multiplatform.webview.web.LoadingState
 import com.multiplatform.webview.web.WebView
 import com.multiplatform.webview.web.rememberWebViewState
 
@@ -77,11 +79,13 @@ internal fun WebViewSample() {
             }
         }
         Column(Modifier.fillMaxSize()) {
-            val text =
-                webViewState.let {
-                    "${it.pageTitle ?: ""} ${it.loadingState} ${it.lastLoadedUrl ?: ""}"
-                }
-            Text(text)
+            val loadingState = webViewState.loadingState
+            if (loadingState is LoadingState.Loading) {
+                LinearProgressIndicator(
+                    progress = loadingState.progress,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
             WebView(
                 state = webViewState,
                 modifier = Modifier.fillMaxSize(),
