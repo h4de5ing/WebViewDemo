@@ -16,3 +16,7 @@ captures
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+/composeApp/cache/
+/composeApp/DawnCache/
+/composeApp/GPUCache/
+/composeApp/kcef-bundle/
